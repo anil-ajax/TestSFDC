@@ -156,7 +156,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
-    <label>Book</label>
+    <label>Book2</label>
     <nameField>
         <label>Book Name</label>
         <trackHistory>true</trackHistory>
