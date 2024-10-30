@@ -6,13 +6,13 @@
     <body>
         <h1>My External Page</h1>
         <div id="lightning-out"></div>
-        <script src="https://SITE_DOMAIN/SITE_URL/lightning/lightning.out.js"></script>
+        <script src="https://anil99-dev-ed.lightning.force.com/lightning/lightning.out.js"></script>
         <script>
             $Lightning.use(
-                'c:MyLightningOutApp', // name of the Lightning Out app
+                'c:greenlight', // name of the Lightning Out app
                 function () { // callback after the framework and app load
                     $Lightning.createComponent(
-                        'c:MyCustomComponent', // top-level component of the Lightning Out app
+                        'c:comp2', // top-level component of the Lightning Out app
                         {}, // attributes to set on the component
                         'lightning-out', // DOM element ID where the component is inserted
                         function (cmp) { // callback after the component loads
@@ -20,8 +20,7 @@
                         }
                     );
                 },
-                'https://SITE_DOMAIN/SITE_URL',
-		authToken
+                'https://anil99-dev-ed.lightning.force.com' // Experience Cloud site endpoint
             );
         </script>
     </body>
