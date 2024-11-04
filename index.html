@@ -10,6 +10,14 @@
 
     <script src="https://d5j000008xeaseai-dev-ed.my.salesforce.com/lightning/lightning.out.js"></script>
 <script>
+    window.addEventListener("message", function(event) {
+    if (event.data && event.data.token) {
+        const accessToken = event.data.token;
+        console.log("Access Token received from LWC:", accessToken);
+        // You can now use the access token as needed in the container
+    }
+});
+    
     console.log('at1:' + at);
       $Lightning.use(
         'c:NewLightningOut', // name of the Lightning app
