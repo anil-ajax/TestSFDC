@@ -9,12 +9,7 @@
     <div id="lightningout"></div>
 
     <script src="https://d5j000008xeaseai-dev-ed.my.salesforce.com/lightning/lightning.out.js"></script>
-<script>
-    window.onload = function() {
-    const at = localStorage.getItem("accessToken");
-    console.log('at1:' + at);
-};
-    
+<script>  
       $Lightning.use(
         'c:NewLightningOut', // name of the Lightning app
         function () {
@@ -29,7 +24,7 @@
             }
           );
         },
-        'https://d5j000008xeaseai-dev-ed.lightning.force.com', at
+        'https://d5j000008xeaseai-dev-ed.my.site.com'
       );
 
 </script>
