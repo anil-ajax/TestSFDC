@@ -10,6 +10,7 @@
 
     <script src="https://d5j000008xeaseai-dev-ed.my.salesforce.com/lightning/lightning.out.js"></script>
 <script>
+    console.log('at1:' + at);
       $Lightning.use(
         'c:NewLightningOut', // name of the Lightning app
         function () {
@@ -20,10 +21,11 @@
             'lightningout', // the DOM location to insert the component
             function (cmp) {
               console.log('The component was created.');// callback when component is created and active on the page
+                console.log('at2:' + at);
             }
           );
         },
-        'https://d5j000008xeaseai-dev-ed.lightning.force.com'
+        'https://d5j000008xeaseai-dev-ed.lightning.force.com', at
       );
 
 </script>
