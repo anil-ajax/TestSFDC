@@ -1,28 +1,31 @@
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-    </head>
-    <body>
-        <h1>My External Page</h1>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
 
-        <div id="lightning-out"></div>
-        <script src="https://anil99-dev-ed.lightning.force.com/lightning/lightning.out.js"></script>
-        <script>
-            $Lightning.use(
-                'c:ddd', // name of the Lightning Out app
-                function () { // callback after the framework and app load
-                    $Lightning.createComponent(
-                        'c:comp2', // top-level component of the Lightning Out app
-                        {}, // attributes to set on the component
-                        'lightning-out', // DOM element ID where the component is inserted
-                        function (cmp) { // callback after the component loads
-                            console.log('The component was created.');
-                        }
-                    );
-                },
-                'https://anil99-dev-ed.lightning.force.com'
-            );
-        </script>
-    </body>
+    <div id="lightningout"></div>
+
+    <script src="https://d5j000008xeaseai-dev-ed.my.salesforce.com/lightning/lightning.out.js"></script>
+<script>
+      $Lightning.use(
+        'c:NewLightningOut', // name of the Lightning app
+        function () {
+          // Callback once framework and app loaded
+          $Lightning.createComponent(
+            'c:greenLight', // top-level component of your app
+            {}, // attributes to set on the component when created
+            'lightningout', // the DOM location to insert the component
+            function (cmp) {
+              console.log('The component was created.');// callback when component is created and active on the page
+            }
+          );
+        },
+        'https://d5j000008xeaseai-dev-ed.my.site.com',
+      );
+
+</script>
+</body>
 </html>
