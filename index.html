@@ -10,6 +10,7 @@
 
     <script src="https://d5j000008xeaseai-dev-ed.my.salesforce.com/lightning/lightning.out.js"></script>
 <script>
+    const at = localStorage.getItem("accessToken");
       $Lightning.use(
         'c:NewLightningOut', // name of the Lightning app
         function () {
@@ -20,7 +21,7 @@
             'lightningout', // the DOM location to insert the component
             function (cmp) {
               console.log('The component was created.');// callback when component is created and active on the page
-              const at = localStorage.getItem("accessToken")
+              
             }
           );
         },
