@@ -1,1 +1,83 @@
-sdfsadfas
+https://stackoverflow.com/questions/47277211/continuous-speech-recognition-on-browser-like-ok-google-or-hey-siri
+
+https://www.google.com/intl/en/chrome/demos/speech.html
+
+<script>
+const magic_word = 'hello';
+
+// initialize our SpeechRecognition object
+let recognition = new webkitSpeechRecognition();
+recognition.lang = 'en-US';
+recognition.interimResults = false;
+recognition.maxAlternatives = 1;
+recognition.continuous = true;
+
+// detect the magic word
+recognition.onresult = e => {
+    // extract all the transcripts
+    var transcripts  = [].concat.apply([], [...e.results]
+      .map(res => [...res]
+        .map(alt => alt.transcript)
+      )
+    );
+  if(transcripts.some(t => t.indexOf(magic_word) > -1)){
+    //do something awesome, like starting your own command listeners
+  }
+  else{
+    // didn't understood...
+  }
+}
+// called when we detect silence
+function stopSpeech(){
+    recognition.stop();
+}
+// called when we detect sound
+function startSpeech(){
+    try{ // calling it twice will throw...
+      recognition.start();
+  }
+  catch(e){}
+}
+// request a LocalMediaStream
+navigator.mediaDevices.getUserMedia({audio:true})
+// add our listeners
+.then(stream => detectSilence(stream, stopSpeech, startSpeech))
+.catch(e => log(e.message));
+
+
+function detectSilence(
+  stream,
+  onSoundEnd = _=>{},
+  onSoundStart = _=>{},
+  silence_delay = 500,
+  min_decibels = -80
+  ) {
+  const ctx = new AudioContext();
+  const analyser = ctx.createAnalyser();
+  const streamNode = ctx.createMediaStreamSource(stream);
+  streamNode.connect(analyser);
+  analyser.minDecibels = min_decibels;
+
+  const data = new Uint8Array(analyser.frequencyBinCount); // will hold our data
+  let silence_start = performance.now();
+  let triggered = false; // trigger only once per silence event
+
+  function loop(time) {
+    requestAnimationFrame(loop); // we'll loop every 60th of a second to check
+    analyser.getByteFrequencyData(data); // get current data
+    if (data.some(v => v)) { // if there is data above the given db limit
+      if(triggered){
+        triggered = false;
+        onSoundStart();
+        }
+      silence_start = time; // set it to now
+    }
+    if (!triggered && time - silence_start > silence_delay) {
+      onSoundEnd();
+      triggered = true;
+    }
+  }
+  loop();
+}
+
+</script>
