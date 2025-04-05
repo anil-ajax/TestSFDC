@@ -9,7 +9,7 @@
     <script type="application/javascript">
         async function init() {
             // Load the Vosk model
-            const model = await Vosk.createModel('model.tar.gz');
+            const model = await Vosk.createModel('https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip');
             const recognizer = new model.KaldiRecognizer();
 
             // Set up event listeners for recognition results
